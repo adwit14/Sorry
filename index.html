@@ -11,20 +11,24 @@
     }
 
     .container {
-      margin-top: 40px;
+      margin-top: 35px;
     }
 
     img {
-      width: 220px;
+      width: 230px;
       max-width: 90%;
+      height: auto;
     }
 
     h1 {
       color: #d6336c;
+      font-size: 32px;
     }
 
-    p {
-      font-size: 20px;
+    #message {
+      font-size: 21px;
+      margin: 20px auto;
+      max-width: 350px;
     }
 
     button {
@@ -51,11 +55,11 @@
 
 <body>
   <div class="container">
-    <img src="https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif">
+    <img id="gif" src="https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif">
 
     <h1>I'm sorry, my love ❤️</h1>
-    <p>I know I hurt you, and I truly regret it.</p>
-    <p>You mean the world to me. Can you forgive me?</p>
+
+    <p id="message">I know I hurt you, and I truly regret it. Can you forgive me?</p>
 
     <button id="yesBtn" onclick="yes()">Yes ❤️</button>
     <button id="noBtn" onclick="no()">No</button>
@@ -65,37 +69,60 @@
     let noClicks = 0;
 
     const messages = [
-      "Are you sure?",
+      "Are you sure? 🥺",
       "Please?",
       "Pretty please?",
-      "I’m really sorry 🥺",
-      "Please forgive me ❤️",
-      "Last chance?"
+      "I’m really sorry, my love ❤️",
+      "I promise I’ll do better.",
+      "Please forgive me? 🥺",
+      "Okay, now you’re just breaking my heart 💔",
+      "Last chance before I cry 😭"
     ];
+
+    const gifs = [
+      "https://media.tenor.com/UcI-3acSXEcAAAAj/bubu-dudu-sseeyall.gif",
+      "https://media.tenor.com/4Ijycn6xFzUAAAAj/mochi-peachcat-cute.gif",
+      "https://media.tenor.com/V3cJtZJ3gJMAAAAj/peach-goma.gif",
+      "https://media.tenor.com/Fm3_oNnjUjYAAAAj/tkthao219-bubududu.gif",
+      "https://media.tenor.com/Bx9Q2o2ZqMYAAAAj/sad-bear.gif",
+      "https://media.tenor.com/WpC7f2PpfAQAAAAj/bubu-dudu.gif",
+      "https://media.tenor.com/K8cMJU4S5eMAAAAj/sad-cat.gif",
+      "https://media.tenor.com/0AVbKGY_MxMAAAAj/crying-bubu.gif"
+    ];
+
+    function no() {
+      const message = document.getElementById("message");
+      const gif = document.getElementById("gif");
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+
+      message.innerText = messages[noClicks] || "Please just say yes ❤️";
+      gif.src = gifs[noClicks] || gifs[gifs.length - 1];
+
+      let noSize = 18 - noClicks * 2;
+      let noPadding = 14 - noClicks * 2;
+
+      noBtn.style.fontSize = Math.max(noSize, 8) + "px";
+      noBtn.style.padding = Math.max(noPadding, 4) + "px " + Math.max(noPadding + 8, 6) + "px";
+
+      let yesSize = 18 + noClicks * 3;
+      let yesPadding = 14 + noClicks * 2;
+
+      yesBtn.style.fontSize = yesSize + "px";
+      yesBtn.style.padding = yesPadding + "px " + (yesPadding + 10) + "px";
+
+      noClicks++;
+    }
 
     function yes() {
       document.body.innerHTML = `
         <div style="text-align:center; padding:30px; font-family:Arial; background:#ffe6ec; min-height:100vh;">
-          <img src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" style="width:220px; max-width:90%; margin-top:40px;">
+          <img src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" style="width:230px; max-width:90%; margin-top:40px;">
           <h1 style="color:#d6336c;">Thank you, my love ❤️</h1>
           <p style="font-size:20px;">I promise I’ll do better.</p>
           <p style="font-size:20px;">You are so important to me, and I never want to lose you.</p>
         </div>
       `;
-    }
-
-    function no() {
-      const noBtn = document.getElementById("noBtn");
-
-      noBtn.innerText = messages[noClicks] || "Please ❤️";
-
-      let currentSize = 18 - noClicks * 2;
-      let currentPadding = 14 - noClicks * 2;
-
-      noBtn.style.fontSize = Math.max(currentSize, 8) + "px";
-      noBtn.style.padding = Math.max(currentPadding, 4) + "px " + Math.max(currentPadding + 8, 6) + "px";
-
-      noClicks++;
     }
   </script>
 </body>
