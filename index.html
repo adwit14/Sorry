@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>I'm Sorry</title>
+  <style>
+    body {
+      background: #ffe6ec;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    img {
+      width: 220px;
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #d6336c;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    button {
+      padding: 14px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background: white;
+      color: #ff4d6d;
+      border: 2px solid #ff4d6d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif">
+
+    <h1>I'm sorry, my love ❤️</h1>
+    <p>I know I hurt you, and I truly regret it.</p>
+    <p>You mean the world to me. Can you forgive me?</p>
+
+    <button id="yesBtn" onclick="yes()">Yes ❤️</button>
+    <button id="noBtn" onclick="no()">No</button>
+  </div>
+
+  <script>
+    let noClicks = 0;
+
+    const messages = [
+      "Are you sure?",
+      "Please?",
+      "Pretty please?",
+      "I’m really sorry 🥺",
+      "Please forgive me ❤️",
+      "Last chance?"
+    ];
+
+    function yes() {
+      document.body.innerHTML = `
+        <div style="text-align:center; padding:30px; font-family:Arial; background:#ffe6ec; min-height:100vh;">
+          <img src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" style="width:220px; max-width:90%; margin-top:40px;">
+          <h1 style="color:#d6336c;">Thank you, my love ❤️</h1>
+          <p style="font-size:20px;">I promise I’ll do better.</p>
+          <p style="font-size:20px;">You are so important to me, and I never want to lose you.</p>
+        </div>
+      `;
+    }
+
+    function no() {
+      const noBtn = document.getElementById("noBtn");
+
+      noBtn.innerText = messages[noClicks] || "Please ❤️";
+
+      let currentSize = 18 - noClicks * 2;
+      let currentPadding = 14 - noClicks * 2;
+
+      noBtn.style.fontSize = Math.max(currentSize, 8) + "px";
+      noBtn.style.padding = Math.max(currentPadding, 4) + "px " + Math.max(currentPadding + 8, 6) + "px";
+
+      noClicks++;
+    }
+  </script>
+</body>
+</html>
